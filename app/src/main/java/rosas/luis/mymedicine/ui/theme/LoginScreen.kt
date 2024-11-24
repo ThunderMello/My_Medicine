@@ -18,8 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import rosas.luis.mymedicine.R // Asegúrate de tener la imagen en la carpeta res/drawable y el import correcto
-import rosas.luis.mymedicine.ui.theme.RegisterScreen
-import rosas.luis.mymedicine.ui.theme.MedicinesScreen
+
 
 @Composable
 fun LoginScreen(navController: NavController) {

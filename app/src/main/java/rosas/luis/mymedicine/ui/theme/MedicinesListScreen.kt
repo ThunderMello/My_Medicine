@@ -69,7 +69,7 @@ fun MedicinesListScreen(navController: NavController) {
 
         // Botón para volver al registro
         Button(onClick = { navController.navigate("home") }) {
-            Text(text = "Agregar Medicamento")
+            Text(text = "Volver al inicio")
         }
     }
 }
