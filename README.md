@@ -1,0 +1,1 @@
+En la versión 1.3 podemos contar con una modificación considerable en el LoginScreen, se añadió el LogScreen para usuarios existentes, se modificó la HomeScreen, se validaron formularios y añadió la opción de la fecha.
