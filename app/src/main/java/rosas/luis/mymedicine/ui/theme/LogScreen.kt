@@ -2,13 +2,12 @@ package rosas.luis.mymedicine.ui.theme
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,12 +24,12 @@ import rosas.luis.mymedicine.R // Asegúrate de tener la imagen en la carpeta re
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LogScreen(navController: NavController) {
     // Variables de estado para el formulario
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) } // Para mostrar u ocultar la contraseña
-    var showError by remember { mutableStateOf(false) } // Para mostrar error en el formulario
+    var passwordVisible by remember { mutableStateOf(false) }
+    var showError by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -60,9 +59,9 @@ fun LoginScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Título de bienvenida
+            // Título de inicio de sesión
             Text(
-                text = "¡Bienvenido a MyMedicine!",
+                text = "Inicia sesión en MyMedicine",
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.White
             )
@@ -76,8 +75,8 @@ fun LoginScreen(navController: NavController) {
                 singleLine = true,
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
+                    focusedIndicatorColor = Color.Gray,
+                    unfocusedIndicatorColor = Color.LightGray,
                 ),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -91,14 +90,16 @@ fun LoginScreen(navController: NavController) {
                 singleLine = true,
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
+                    focusedIndicatorColor = Color.Gray,
+                    unfocusedIndicatorColor = Color.LightGray,
                 ),
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-                    val image = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                    // Ícono de visibilidad de contraseña
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Icon(imageVector = image, contentDescription = if (passwordVisible) "Ocultar contraseña" else "Mostrar contraseña")
+                        val icon = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                        val description = if (passwordVisible) "Ocultar contraseña" else "Mostrar contraseña"
+                        Icon(imageVector = icon, contentDescription = description)
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
@@ -115,14 +116,15 @@ fun LoginScreen(navController: NavController) {
                 )
             }
 
-            // Botón para acceder a la app
+            // Botón para iniciar sesión
             Button(
                 onClick = {
-                    // Validar que los campos no estén vacíos
                     if (username.isNotBlank() && password.isNotBlank()) {
-                        navController.navigate("home") // Navega a la pantalla de inicio
+                        // Si ambos campos están llenos, navegar a HomeScreen
+                        navController.navigate("home")
                     } else {
-                        showError = true // Mostrar error si los campos están vacíos
+                        // Mostrar mensaje de error si hay campos vacíos
+                        showError = true
                     }
                 },
                 shape = RoundedCornerShape(8.dp),
@@ -132,18 +134,6 @@ fun LoginScreen(navController: NavController) {
             ) {
                 Text(text = "Iniciar Sesión")
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Texto para cambiar a la pantalla de inicio de sesión
-            Text(
-                text = "¿No tienes una cuenta? Registrate",
-                color = Color.White,
-                fontSize = 14.sp,
-                modifier = Modifier.clickable {
-                    navController.navigate("register") // Navega a la pantalla de registro
-                }
-            )
         }
     }
 }

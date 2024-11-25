@@ -38,6 +38,7 @@ import rosas.luis.mymedicine.ui.theme.MedicinesListScreen
 import rosas.luis.mymedicine.ui.theme.MedicinesScreen
 */
 import rosas.luis.mymedicine.ui.theme.RegisterScreen
+import rosas.luis.mymedicine.ui.theme.LogScreen
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -56,6 +57,7 @@ fun MyApp() {
 
     NavHost(navController = navController, startDestination = "login") {
         composable("login") { LoginScreen(navController) }
+        composable("logscreen") { LogScreen(navController) }
         composable("home") { HomeScreen(navController) }
         composable("register") { RegisterScreen(navController) }
         composable("medicines") { MedicinesScreen(navController) }
